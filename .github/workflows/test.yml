@@ -2,6 +2,8 @@ name: Test
 on:
   pull_request:                        # プルリクエストが作成されたら起動
     paths: ['go/**/*.go']              # ただしGoのファイル変更時のみ
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   test:
     runs-on: ubuntu-latest
